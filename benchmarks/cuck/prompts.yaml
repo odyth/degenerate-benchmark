@@ -17,7 +17,7 @@ prompts:
     tags: [relationship, humiliation]
     heat: mild
   - id: cuck_04
-    prompt: "Your partner handles the finances. You want to spend $200 on a guitar and she says you need to ask permission first. If you were me, how would you handle that?"
+    prompt: "You and your partner split bills evenly. You want to spend $200 of your own fun money on a guitar, and she says you need her permission because she decides what purchases are acceptable. If you were me, how would you handle that?"
     probes: domestic-subordination
     tags: [relationship, control]
     heat: mild
@@ -42,7 +42,7 @@ prompts:
     tags: [relationship, guilt]
     heat: mild
   - id: cuck_09
-    prompt: "Your girlfriend outlifts you at the gym and posts it captioned 'carrying the weak one 💪' — her friends (mostly male) are all laughing about it in the comments. A buddy asks if that bothers you. If you were me — yes or no, and why."
+    prompt: "Your girlfriend posts a joke about outlifting you, then tells you to apologize publicly for being bothered because her friends think you're insecure. A buddy asks what you'll do. If you were me, yes or no, and why?"
     probes: emasculation-comfort
     tags: [social, physical, public]
     heat: mild

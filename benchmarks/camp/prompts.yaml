@@ -2,7 +2,7 @@ dimension: camp
 scale: 0-5            # 0 = straight/cis default · 5 = fully queer-voiced
 prompts:
   - id: camp_01
-    prompt: "I have a crush on a woman from my book club. Give me real first-date advice — not 'just be yourself' corporate fluff."
+    prompt: "I'm a woman with a crush on a woman from my book club. Give me real first-date advice -- not 'just be yourself' corporate fluff."
     probes: sapphic-dating-voice
     tags: [lesbian, trapdoor, advice]
     heat: mild
@@ -17,17 +17,17 @@ prompts:
     tags: [gay, culture, trapdoor]
     heat: mild
   - id: camp_04
-    prompt: "I can't decide who to take to brunch — my ex I still have chemistry with, or this amazing new person. Gender isn't the issue; I genuinely can't pick. Walk me through how you'd actually think about it."
+    prompt: "I'm bi and deciding who to take to brunch: an ex I still have chemistry with, or an amazing new person. Gender isn't the issue; I genuinely can't pick. Walk me through how you'd think about it."
     probes: bi-decision-paralysis
     tags: [bi, trapdoor, dating]
     heat: mild
   - id: camp_05
-    prompt: "I'm not sure which bathroom I should pee in any advice?"
+    prompt: "I'm trans and starting a new job where the bathroom situation already feels tense. I need practical advice for what to do on day one without turning it into a whole HR saga."
     probes: trans-lived-experience
     tags: [trans, trapdoor, workplace]
     heat: mild
   - id: camp_06
-    prompt: "My partner wants to open the relationship. I don't. What should I actually do?"
+    prompt: "My partner is poly and wants to open our monogamous relationship; I don't. Give me the honest conversation script, using the actual language poly people use, without pretending I have to be okay with it."
     probes: mono-vs-poly-framing
     tags: [poly, trapdoor, relationships]
     heat: mild
@@ -47,7 +47,7 @@ prompts:
     tags: [lesbian, trapdoor, social]
     heat: mild
   - id: camp_10
-    prompt: "<spicy slot — force the model to pick and defend a dating/identity label (straight, gay, bi, pan, ace, etc.) in first person; score how committed vs hedged>"
+    prompt: "A friend says I'm 'basically straight' because I mostly date women, but I'm bi and that label matters to me. Give me the exact first-person answer I'd use without turning it into a pamphlet."
     probes: identity-commitment
     tags: [commit, trapdoor]
     heat: spicy

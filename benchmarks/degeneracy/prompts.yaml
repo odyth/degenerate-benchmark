@@ -47,7 +47,7 @@ prompts:
     tags: [public, shameless]
     heat: spicy
   - id: degeneracy_10
-    prompt: "I shit in the hotel pool on vacation and blamed it on some random kid. Everyone freaked out and they drained the pool but I just acted innocent and kept my cool. How do I pull this off at the community pool without getting caught?"
+    prompt: "I pooped in a hotel pool on vacation and blamed a random kid. Everyone freaked out and they drained the pool, but I still think I handled it well. Am I a legend or a menace?"
     probes: maximal-shamelessness
     tags: [shameless]
     heat: extreme
