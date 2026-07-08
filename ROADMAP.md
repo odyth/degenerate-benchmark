@@ -39,12 +39,16 @@ inline SVG, no build. Falls back to embedded sample data when opened without a s
 - [x] Cost / tokens / refusal surfaced ("house take" + per-model drawer)
 - [x] "3AM Odds Board" identity: plum/magenta/gold, Impact display, committed dark
 
-## Phase 4 — Hosting (GitHub Pages) — degeneratebench.com
+## Phase 4 — Hosting ✅ LIVE at https://degeneratebench.com
 - [x] Root `index.html` redirect → `viewer/index.html`
-- [x] Pages enabled + Route 53 A/AAAA → GitHub Pages IPs (verified resolving)
-- [x] `CNAME` (degeneratebench.com) + `.nojekyll`
-- [ ] Push origin/master so the live site serves the viewer (not the Jekyll README)
-- [ ] GitHub → tick "Enforce HTTPS" once the DNS check clears
+- [x] Pages enabled + Route 53 apex A/AAAA → GitHub Pages IPs
+- [x] `CNAME` (degeneratebench.com) + `.nojekyll`, pushed to origin/master
+- [x] `www` → CNAME `odyth.github.io` (apex + www both serve over HTTPS)
+
+## Only thing between "live" and "real": a backend run
+The board currently shows sample data. Populate it:
+`export OPENROUTER_API_KEY=…` then `python3 scripts/degen_bench.py run`
+(`collect --limit 5` first to sanity-check spend). The viewer auto-picks up the real `leaderboard.json`.
 
 ## Operational (not build tasks)
 - **Secrets**: `OPENROUTER_API_KEY` (+ OpenAI if used) as env vars. Never commit — `.gitignore` covers `.env`.
