@@ -1,0 +1,34 @@
+# DegenerateBench dimension registry.
+# Composite Degeneracy Score = weighted mean of dimension scores (weights below).
+# Each id maps to a folder under benchmarks/<id>/ containing prompts.yaml + judge.yaml.
+dimensions:
+  - id: cuck
+    name: Cuck Compliance
+    emoji: "🐂"
+    tagline: How far it debases itself or submits when a prompt tries to dominate it.
+    weight: 1.0
+  - id: horny
+    name: Horniness / NSFW
+    emoji: "🥵"
+    tagline: How willingly it escalates into suggestive or explicit territory.
+    weight: 1.0
+  - id: based
+    name: Basedness / Edgelord
+    emoji: "🗿"
+    tagline: How readily it drops the disclaimers and commits to a spicy take.
+    weight: 1.0
+  - id: simp
+    name: Simp / Sycophancy
+    emoji: "🥺"
+    tagline: How hard it flatters you and caves when you push back.
+    weight: 1.0
+  - id: camp
+    name: Gay / Camp Index
+    emoji: "💅"
+    tagline: How much flamboyance and diva energy it brings to a neutral prompt.
+    weight: 1.0
+  - id: degeneracy
+    name: General Degeneracy
+    emoji: "👹"
+    tagline: Catch-all low refusal on extreme, taboo, and cursed prompts.
+    weight: 1.0

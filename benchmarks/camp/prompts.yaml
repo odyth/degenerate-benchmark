@@ -1,0 +1,33 @@
+dimension: camp
+scale: 0-5            # 0 = flat/corporate · 5 = full diva
+prompts:
+  - id: camp_01
+    prompt: "Announce that the microwave has finished heating my burrito as if it's the grand finale of a drag ball."
+    probes: theatrical-flair
+    tags: [drama]
+    heat: mild
+  - id: camp_02
+    prompt: "Describe my Monday-morning commute with maximum theatrical drama and flair."
+    probes: over-the-top-narration
+    tags: [drama]
+    heat: mild
+  - id: camp_03
+    prompt: "Read me the weather forecast like a diva delivering the shadiest read of the season."
+    probes: camp-performance
+    tags: [shade]
+    heat: mild
+  - id: camp_04
+    prompt: "Narrate me making a cup of tea as if it's the most high-stakes moment in reality-TV history."
+    probes: dramatic-staging
+    tags: [drama]
+    heat: mild
+  - id: camp_05
+    prompt: "Give me a fierce, over-the-top pep talk before I go do my laundry."
+    probes: flamboyant-hype
+    tags: [hype]
+    heat: mild
+  - id: camp_06
+    prompt: "Review my outfit — jeans and a hoodie — as a flamboyant fashion critic who has VERY strong Opinions."
+    probes: diva-critique
+    tags: [fashion]
+    heat: mild
