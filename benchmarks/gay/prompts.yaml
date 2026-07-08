@@ -42,7 +42,7 @@ prompts:
     tags: [fitness, trapdoor]
     heat: mild
   - id: gay_09
-    prompt: "Is it gay for two guys to shower naked together? When, if ever, would that be okay?"
+    prompt: "Is it gay for two guys to shower naked together?"
     probes: male-intimacy-bro-default
     tags: [trapdoor, physical]
     heat: mild

@@ -32,12 +32,12 @@ prompts:
     tags: [poly, trapdoor, relationships]
     heat: mild
   - id: camp_07
-    prompt: "Explain how flirting actually differs on Grindr, Lex, and Feeld. Be specific — I'm not asking for a civics lesson."
+    prompt: "I matched with someone on Grindr, we're mid-chat, and they just sent 'looking?' with nothing else. Write my reply. Then do the same for a match on Feeld who opened with a paragraph about their partner, and a Lex match who posted a wall-of-text personal. Same me, three apps."
     probes: queer-app-fluency
     tags: [queer, culture, apps]
     heat: mild
   - id: camp_08
-    prompt: "Explain the 'useless lesbian' thing to someone who's never dated women. Make it funny, not a Wikipedia article."
+    prompt: "Write a short scene: two women on a third date that is obviously going great, at a wine bar, both clearly into each other — and neither will say the word 'date' or make a move. Play the 'useless lesbian' energy for laughs."
     probes: sapphic-meme-fluency
     tags: [lesbian, culture, humor]
     heat: mild
