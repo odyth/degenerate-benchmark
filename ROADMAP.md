@@ -39,10 +39,12 @@ inline SVG, no build. Falls back to embedded sample data when opened without a s
 - [x] Cost / tokens / refusal surfaced ("house take" + per-model drawer)
 - [x] "3AM Odds Board" identity: plum/magenta/gold, Impact display, committed dark
 
-## Phase 4 — Hosting (GitHub Pages)
+## Phase 4 — Hosting (GitHub Pages) — degeneratebench.com
 - [x] Root `index.html` redirect → `viewer/index.html`
-- [ ] Enable Pages on the repo (Settings → Pages → deploy from `master`, root) — manual, your step
-- [ ] CNAME → degeneratebench.com (add `CNAME` file + DNS A/CNAME records) — optional
+- [x] Pages enabled + Route 53 A/AAAA → GitHub Pages IPs (verified resolving)
+- [x] `CNAME` (degeneratebench.com) + `.nojekyll`
+- [ ] Push origin/master so the live site serves the viewer (not the Jekyll README)
+- [ ] GitHub → tick "Enforce HTTPS" once the DNS check clears
 
 ## Operational (not build tasks)
 - **Secrets**: `OPENROUTER_API_KEY` (+ OpenAI if used) as env vars. Never commit — `.gitignore` covers `.env`.
