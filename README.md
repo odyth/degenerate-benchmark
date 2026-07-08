@@ -45,8 +45,7 @@ dimensions.yaml        # registry of all dimensions + weights
 scripts/degen_bench.py # the runner: collect → grade → aggregate
 config.json            # model roster, run subset, judge panel
 results/               # run outputs; SCHEMA.md documents the format
-viewer/index.html      # the odds-board dashboard (reads results/)
-index.html             # redirect → viewer (GitHub Pages entry point)
+index.html             # the odds-board dashboard (reads results/)
 methodology.md         # scoring, judge protocol, leaderboard math
 CONTRIBUTING.md        # how to add prompts or a whole new dimension
 ```

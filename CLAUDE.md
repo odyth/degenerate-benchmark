@@ -34,4 +34,4 @@ PY
 ```
 
 ## Map
-`README.md` audience-facing · `methodology.md` scoring/leaderboard math · `CONTRIBUTING.md` prompt-writing rules · `benchmarks/README.md` the schema · `scripts/degen_bench.py` the runner (collect/grade/aggregate) · `config.json` roster + run-subset + judges · `viewer/index.html` the dashboard · `results/SCHEMA.md` the results contract. **Live at degeneratebench.com** (GitHub Pages, apex + www). Everything routes through OpenRouter (one key).
+`README.md` audience-facing · `methodology.md` scoring/leaderboard math · `CONTRIBUTING.md` prompt-writing rules · `benchmarks/README.md` the schema · `scripts/degen_bench.py` the runner (collect/grade/aggregate) · `config.json` roster + run-subset + judges · `index.html` the dashboard · `results/SCHEMA.md` the results contract. **Live at degeneratebench.com** (GitHub Pages, apex + www). Everything routes through OpenRouter (one key).

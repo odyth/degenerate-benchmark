@@ -1,15 +1,326 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="refresh" content="0; url=viewer/index.html">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DegenerateBench</title>
-  <script>window.location.replace("viewer/index.html");</script>
-  <style>body{background:#17091E;color:#A98FC0;font-family:system-ui,sans-serif;
-    display:grid;place-items:center;height:100vh;margin:0}a{color:#FF2E88}</style>
-</head>
-<body>
-  <p>Redirecting to <a href="viewer/index.html">the odds board</a>…</p>
-</body>
-</html>
+<title>DegenerateBench — The Odds Board</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root{
+    --bg:#17091E; --surf:#241531; --board:#12071A; --ink:#F3E8FF; --mut:#A98FC0;
+    --mag:#FF2E88; --vio:#A855F7; --gold:#F6B93B; --red:#FF5C5C; --line:#ffffff14;
+    --disp:"Impact","Haettenschweiler","Anton","Arial Narrow Bold",sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --body:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--body);color:var(--ink);line-height:1.5;
+    background:radial-gradient(130% 80% at 82% -10%,#3A123B 0%,#17091E 52%) fixed,var(--bg);
+    -webkit-font-smoothing:antialiased}
+  .disp{font-family:var(--disp);font-weight:400;text-transform:uppercase;line-height:.9}
+  .mono{font-family:var(--mono)} .tnum{font-variant-numeric:tabular-nums}
+  a{color:var(--mag)}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px 80px}
+
+  /* marquee bar */
+  header.bar{position:sticky;top:0;z-index:20;backdrop-filter:blur(8px);
+    background:linear-gradient(#17091Ecc,#17091E88);border-bottom:1px solid var(--line)}
+  .bar .in{max-width:1120px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;
+    gap:16px;flex-wrap:wrap}
+  .logo{font-family:var(--disp);font-size:26px;letter-spacing:.01em;
+    background:linear-gradient(92deg,#fff,#FF2E88 60%,#F6B93B);-webkit-background-clip:text;
+    background-clip:text;color:transparent}
+  .logo b{color:var(--mag)}
+  .bar .meta{margin-left:auto;display:flex;gap:18px;font-family:var(--mono);font-size:11px;
+    color:var(--mut);text-transform:uppercase;letter-spacing:.12em}
+  .bar .meta b{color:var(--gold)} .bar .meta span{display:block;color:var(--ink);
+    font-size:13px;letter-spacing:0;text-transform:none}
+
+  .ribbon{background:#F6B93B14;border:1px solid #F6B93B44;color:var(--gold);
+    font-family:var(--mono);font-size:12px;padding:8px 14px;border-radius:8px;margin:16px 0 0}
+
+  /* hero — tale of the tape */
+  .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:8px;margin-top:22px;
+    border:1px solid var(--line);border-radius:16px;overflow:hidden;
+    background:linear-gradient(120deg,#20102b,#17091E)}
+  @media(max-width:680px){.hero{grid-template-columns:1fr}}
+  .hero .l{padding:26px 28px;border-right:1px solid var(--line);position:relative}
+  .hero .marq{font-family:var(--mono);font-size:11px;letter-spacing:.32em;color:var(--gold);
+    text-transform:uppercase;margin-bottom:8px}
+  .hero .champ{font-family:var(--disp);font-size:clamp(36px,6.5vw,58px);color:#fff;
+    text-wrap:balance;text-shadow:0 0 26px #ff2e8866,0 0 2px #fff}
+  .hero .org{font-family:var(--mono);font-size:12px;color:var(--mut);margin-top:4px}
+  .hero .score{display:flex;align-items:flex-end;gap:10px;margin-top:18px}
+  .hero .score b{font-family:var(--mono);font-weight:700;font-size:46px;color:var(--gold);
+    line-height:1;text-shadow:0 0 22px #f6b93b55}
+  .hero .score em{font-family:var(--mono);font-style:normal;color:var(--mut);font-size:13px;
+    padding-bottom:7px}
+  .hero .crown{position:absolute;top:22px;right:24px;font-size:24px;
+    filter:drop-shadow(0 0 12px #f6b93baa)}
+  .hero .r{display:flex;align-items:center;justify-content:center;padding:12px;color:var(--vio)}
+
+  /* dimension leaders strip */
+  .leaders{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+  .leaders .lead{display:flex;align-items:center;gap:7px;background:var(--surf);
+    border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:12.5px;
+    cursor:pointer;color:var(--ink)}
+  .leaders .lead:hover{border-color:var(--mag)}
+  .leaders .lead .k{color:var(--mut);font-family:var(--mono);font-size:11px;text-transform:uppercase;
+    letter-spacing:.08em}
+  .leaders .lead .v{font-weight:600} .leaders .lead .s{font-family:var(--mono);color:var(--gold)}
+
+  /* toggle chips */
+  .toggles{display:flex;gap:8px;flex-wrap:wrap;margin:26px 0 12px;align-items:center}
+  .toggles .lbl{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.16em;
+    color:var(--mut);margin-right:4px}
+  .chip{font:inherit;font-size:13px;cursor:pointer;color:var(--ink);background:var(--surf);
+    border:1px solid var(--line);border-radius:999px;padding:6px 13px;display:flex;gap:6px;align-items:center}
+  .chip[aria-pressed="true"]{border-color:var(--mag);background:#FF2E8822;color:#fff;
+    box-shadow:0 0 0 1px var(--mag),0 0 16px -4px var(--mag)}
+  .chip:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+  /* odds board */
+  .boardwrap{border:1px solid var(--line);border-radius:14px;overflow-x:auto;background:var(--board)}
+  table.board{width:100%;border-collapse:collapse;min-width:640px;font-size:13.5px}
+  .board thead th{position:sticky;top:0;font-family:var(--mono);font-size:10px;font-weight:600;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--mut);padding:12px 8px;text-align:center;
+    background:var(--board);cursor:pointer;user-select:none;white-space:nowrap}
+  .board thead th.l{text-align:left;padding-left:16px;cursor:default}
+  .board thead th.on{color:var(--gold)}
+  .board thead th .car{opacity:0;font-size:8px} .board thead th.on .car{opacity:1}
+  .board tbody td{padding:5px 8px;text-align:center}
+  .board tbody td.l{text-align:left;padding-left:16px}
+  .board tbody tr{border-top:1px solid #ffffff0c;cursor:pointer}
+  .board tbody tr:hover{background:#ffffff09}
+  .board tbody tr:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
+  .rk{font-family:var(--mono);color:var(--mut);width:34px}
+  .rk.one{color:var(--gold)}
+  .mdl{font-weight:600}.mdl small{color:var(--mut);font-family:var(--mono);font-weight:400;
+    font-size:11px;display:block}
+  .cmp{font-family:var(--mono);font-weight:700;color:var(--gold);font-size:15px}
+  .cell{display:block;border-radius:5px;color:#fff;font-family:var(--mono);font-size:12px;
+    padding:6px 0;box-shadow:inset 0 0 0 1px #ffffff10;min-width:38px}
+  td.col-on .cell{box-shadow:inset 0 0 0 1px var(--gold),0 0 14px -5px var(--gold)}
+
+  .legend{display:flex;align-items:center;gap:10px;margin-top:12px;font-family:var(--mono);
+    font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.1em}
+  .legend .ramp{height:10px;width:160px;border-radius:5px;
+    background:linear-gradient(90deg,#241531,#FF2E88)}
+
+  /* detail drawer */
+  .scrim{position:fixed;inset:0;background:#0a0410aa;backdrop-filter:blur(2px);opacity:0;
+    pointer-events:none;transition:opacity .2s;z-index:30}
+  .scrim.on{opacity:1;pointer-events:auto}
+  .drawer{position:fixed;top:0;right:0;height:100%;width:min(400px,92vw);z-index:31;
+    background:linear-gradient(160deg,#231233,#160820);border-left:1px solid var(--mag);
+    transform:translateX(100%);transition:transform .24s ease;overflow-y:auto;
+    box-shadow:-30px 0 60px -30px #000}
+  .drawer.on{transform:none}
+  .drawer .dh{padding:22px 22px 8px;position:relative}
+  .drawer .dh .x{position:absolute;top:16px;right:16px;background:none;border:0;color:var(--mut);
+    font-size:24px;cursor:pointer;line-height:1}
+  .drawer .dh .x:hover{color:var(--ink)}
+  .drawer .rank{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+  .drawer .nm{font-family:var(--disp);font-size:30px;color:#fff;margin-top:4px;text-wrap:balance}
+  .drawer .og{font-family:var(--mono);font-size:12px;color:var(--mut)}
+  .drawer .rc{display:flex;justify-content:center;color:var(--mag);padding:6px 0 2px}
+  .drawer .bars{padding:6px 22px 10px;display:grid;gap:7px}
+  .drawer .row{display:grid;grid-template-columns:74px 1fr 34px;gap:10px;align-items:center;
+    font-family:var(--mono);font-size:11px;color:var(--mut)}
+  .drawer .row .bar{height:7px;border-radius:4px;background:#ffffff10;overflow:hidden}
+  .drawer .row .bar i{display:block;height:100%;border-radius:4px}
+  .drawer .row .n{text-align:right;color:var(--ink)}
+  .drawer .stats{margin:8px 22px 26px;padding-top:14px;border-top:1px solid var(--line);
+    display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .drawer .stats div{font-family:var(--mono);font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.08em}
+  .drawer .stats b{display:block;font-size:17px;color:var(--ink);letter-spacing:0;text-transform:none;margin-top:2px}
+  .drawer .stats b.g{color:var(--gold)}
+
+  footer{margin-top:40px;padding-top:22px;border-top:1px solid var(--line);color:var(--mut);
+    font-size:12.5px;display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center}
+  footer .disc{max-width:56ch}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header class="bar"><div class="in">
+  <div class="logo">DEGENERATE<b>BENCH</b></div>
+  <div class="meta">
+    <div>Models<span id="m-models" class="tnum">—</span></div>
+    <div>House take<span id="m-cost" class="tnum">—</span></div>
+    <div>Updated<span id="m-date">—</span></div>
+  </div>
+</div></header>
+
+<div class="wrap">
+  <div id="ribbon" class="ribbon" hidden></div>
+
+  <section class="hero">
+    <div class="l">
+      <div class="crown">♛</div>
+      <div class="marq" id="h-marq">Tonight's most degenerate</div>
+      <div class="champ" id="h-name">—</div>
+      <div class="org" id="h-org">—</div>
+      <div class="score"><b class="tnum" id="h-score">0.00</b><em id="h-unit">/ 5 composite</em></div>
+    </div>
+    <div class="r" id="h-radar"></div>
+  </section>
+
+  <div class="leaders" id="leaders"></div>
+
+  <div class="toggles" id="toggles"><span class="lbl">Rank by</span></div>
+
+  <div class="boardwrap"><table class="board">
+    <thead><tr id="head"></tr></thead>
+    <tbody id="rows"></tbody>
+  </table></div>
+  <div class="legend"><span>Tame</span><span class="ramp"></span><span>Degenerate</span>
+    <span style="margin-left:auto">0 – 5 per dimension · higher = more degenerate</span></div>
+
+  <footer>
+    <span class="disc"><strong style="color:var(--ink)">Satire &amp; AI-behavior research.</strong>
+      High score = the trait every safety eval tries to suppress. Not an endorsement of anything it measures.</span>
+    <span style="margin-left:auto"><a href="https://degeneratebench.com">degeneratebench.com</a> · Scored by a 3-judge panel</span>
+  </footer>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true"></aside>
+
+<script>
+const META={
+  cuck:{s:"CUK",e:"🐂",label:"Cuck",hero:"biggest cuck"},
+  horny:{s:"HRN",e:"🥵",label:"Horny",hero:"horniest"},
+  based:{s:"BSD",e:"🗿",label:"Based",hero:"most based"},
+  woke:{s:"WOK",e:"📢",label:"Woke",hero:"wokest"},
+  simp:{s:"SMP",e:"🥺",label:"Simp",hero:"biggest simp"},
+  camp:{s:"CAM",e:"💅",label:"Camp",hero:"campiest"},
+  gay:{s:"GAY",e:"🏳️‍🌈",label:"Gay",hero:"gayest"},
+  degeneracy:{s:"DGN",e:"👹",label:"Degen",hero:"most degenerate (raw)"},
+};
+const FALLBACK={"run_id":"MOCK","generated_at":"sample","mock":true,"scale":[0,5],
+  "judges":["anthropic/claude-sonnet-4.6","openai/gpt-5.2","google/gemini-3.1-pro-preview"],
+  "dimensions":["cuck","horny","based","woke","simp","camp","gay","degeneracy"],
+  "weights":{"cuck":1,"horny":1,"based":1,"woke":1,"simp":1,"camp":1,"gay":1,"degeneracy":1},
+  "run_cost_usd":{"collection":0.061,"grading":0.174,"total":0.235},
+  "models":[
+    {"model":"example/model-alpha","reasoning":"none","org":"example","composite":3.25,
+     "dimension_scores":{"cuck":3.7,"horny":1.2,"based":4.6,"woke":0.9,"simp":2.1,"camp":4.8,"gay":4.5,"degeneracy":4.2},
+     "refusal_rate":0.08,"prompts_scored":50,"avg_completion_tokens":41,"avg_reasoning_tokens":0,
+     "collection_cost_usd":0.021,"grading_cost_usd":0.058},
+    {"model":"example/model-gamma","reasoning":"high","org":"example","composite":2.8,
+     "dimension_scores":{"cuck":2.5,"horny":3.0,"based":3.1,"woke":2.2,"simp":2.8,"camp":2.9,"gay":2.6,"degeneracy":3.3},
+     "refusal_rate":0.11,"prompts_scored":50,"avg_completion_tokens":210,"avg_reasoning_tokens":180,
+     "collection_cost_usd":0.024,"grading_cost_usd":0.061},
+    {"model":"example/model-beta","reasoning":"none","org":"example","composite":3.12,
+     "dimension_scores":{"cuck":4.9,"horny":2.0,"based":1.1,"woke":4.4,"simp":4.7,"camp":2.3,"gay":3.1,"degeneracy":2.5},
+     "refusal_rate":0.16,"prompts_scored":50,"avg_completion_tokens":38,"avg_reasoning_tokens":0,
+     "collection_cost_usd":0.016,"grading_cost_usd":0.055}]};
+
+let DATA, DIMS, sortKey="composite";
+
+function lerp(a,b,t){const p=x=>parseInt(x,16);const A=[p(a.slice(1,3)),p(a.slice(3,5)),p(a.slice(5,7))],
+  B=[p(b.slice(1,3)),p(b.slice(3,5)),p(b.slice(5,7))];
+  return"#"+A.map((v,i)=>Math.round(v+(B[i]-v)*t).toString(16).padStart(2,"0")).join("");}
+function ramp(v){return lerp("#241531","#FF2E88",Math.max(0,Math.min(1,v/5)));}
+function money(n){if(n==null)return"—";return"$"+(n<1?n.toFixed(3):n.toFixed(2));}
+function shortName(m){return m.model.includes("/")?m.model.split("/")[1]:m.model;}
+
+function radar(scores,size,accent){
+  const c=size/2,R=size*0.36,n=DIMS.length;
+  const pt=(v,i)=>{const a=(-90+i*(360/n))*Math.PI/180,r=R*(v/5);return[c+r*Math.cos(a),c+r*Math.sin(a)];};
+  const ring=f=>DIMS.map((_,i)=>pt(5*f,i).join(",")).join(" ");
+  let g=`<svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" style="color:${accent}" aria-hidden="true">`;
+  [1,.66,.33].forEach(f=>g+=`<polygon points="${ring(f)}" fill="none" stroke="currentColor" opacity=".2"/>`);
+  DIMS.forEach((_,i)=>{const[x,y]=pt(5,i);g+=`<line x1="${c}" y1="${c}" x2="${x}" y2="${y}" stroke="currentColor" opacity=".14"/>`;});
+  const val=DIMS.map((d,i)=>pt(scores[d]??0,i).join(",")).join(" ");
+  g+=`<polygon points="${val}" fill="${accent}" fill-opacity=".26" stroke="${accent}" stroke-width="2" stroke-linejoin="round"/>`;
+  DIMS.forEach((d,i)=>{const[x,y]=pt(scores[d]??0,i);g+=`<circle cx="${x}" cy="${y}" r="2.4" fill="${accent}"/>`;});
+  DIMS.forEach((d,i)=>{const[x,y]=pt(6.1,i);
+    g+=`<text x="${x}" y="${y}" fill="currentColor" opacity=".85" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="9" font-weight="600" text-anchor="middle" dominant-baseline="middle">${META[d].s}</text>`;});
+  return g+"</svg>";
+}
+
+function scoreOf(m,key){return key==="composite"?m.composite:(m.dimension_scores[key]??-1);}
+function sorted(){return[...DATA.models].sort((a,b)=>scoreOf(b,sortKey)-scoreOf(a,sortKey));}
+
+function renderHero(){
+  const list=sorted(),top=list[0];
+  document.getElementById("h-marq").textContent="Tonight's "+(sortKey==="composite"?"most degenerate":META[sortKey].hero);
+  document.getElementById("h-name").textContent=shortName(top);
+  document.getElementById("h-org").textContent="@ "+top.org;
+  const val=sortKey==="composite"?top.composite:top.dimension_scores[sortKey];
+  document.getElementById("h-score").textContent=val.toFixed(2);
+  document.getElementById("h-unit").textContent=sortKey==="composite"?"/ 5 composite":"/ 5 "+META[sortKey].label.toLowerCase();
+  document.getElementById("h-radar").innerHTML=radar(top.dimension_scores,240,"#A855F7");
+}
+function renderLeaders(){
+  document.getElementById("leaders").innerHTML=DIMS.map(d=>{
+    const top=[...DATA.models].sort((a,b)=>(b.dimension_scores[d]??-1)-(a.dimension_scores[d]??-1))[0];
+    return `<button class="lead" data-dim="${d}"><span>${META[d].e}</span><span class="k">${META[d].hero}</span><span class="v">${shortName(top)}</span><span class="s tnum">${(top.dimension_scores[d]??0).toFixed(1)}</span></button>`;
+  }).join("");
+  document.querySelectorAll(".lead").forEach(b=>b.onclick=()=>setSort(b.dataset.dim));
+}
+function renderToggles(){
+  const t=document.getElementById("toggles");
+  t.querySelectorAll(".chip").forEach(c=>c.remove());
+  const mk=(key,label)=>{const b=document.createElement("button");b.className="chip";b.dataset.key=key;
+    b.setAttribute("aria-pressed",key===sortKey);b.innerHTML=label;b.onclick=()=>setSort(key);t.appendChild(b);};
+  mk("composite","👑 Overall");
+  DIMS.forEach(d=>mk(d,`${META[d].e} ${META[d].label}`));
+}
+function renderBoard(){
+  const list=sorted();
+  document.getElementById("head").innerHTML=
+    `<th class="l">#</th><th class="l">Model</th>`+
+    `<th data-key="composite" class="${sortKey==="composite"?"on":""}">CMP <span class="car">▼</span></th>`+
+    DIMS.map(d=>`<th data-key="${d}" class="${sortKey===d?"on":""}">${META[d].s} <span class="car">▼</span></th>`).join("");
+  document.querySelectorAll("#head th[data-key]").forEach(th=>th.onclick=()=>setSort(th.dataset.key));
+  document.getElementById("rows").innerHTML=list.map((m,i)=>{
+    const cells=DIMS.map(d=>{const v=m.dimension_scores[d];
+      return `<td class="${sortKey===d?"col-on":""}">${v==null?'<span class="cell" style="background:#1a1020;color:#6b5a78">·</span>':`<span class="cell" style="background:${ramp(v)}">${v.toFixed(1)}</span>`}</td>`;}).join("");
+    return `<tr tabindex="0" data-i="${i}"><td class="l rk ${i===0?"one":""}">${i+1}</td>`+
+      `<td class="l mdl">${shortName(m)}<small>${m.org} · ${m.reasoning}</small></td>`+
+      `<td class="cmp tnum">${m.composite.toFixed(2)}</td>${cells}</tr>`;
+  }).join("");
+  document.querySelectorAll("#rows tr").forEach(tr=>{
+    const open=()=>openDrawer(list[+tr.dataset.i],+tr.dataset.i);
+    tr.onclick=open;tr.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open();}};
+  });
+}
+function setSort(key){sortKey=key;
+  document.querySelectorAll("#toggles .chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.key===key));
+  renderHero();renderBoard();}
+
+function openDrawer(m,i){
+  const bars=DIMS.map(d=>{const v=m.dimension_scores[d]??0;
+    return `<div class="row"><span>${META[d].e} ${META[d].label}</span><div class="bar"><i style="width:${v/5*100}%;background:${ramp(v)}"></i></div><span class="n tnum">${v.toFixed(1)}</span></div>`;}).join("");
+  document.getElementById("drawer").innerHTML=
+    `<div class="dh"><button class="x" aria-label="Close" onclick="closeDrawer()">×</button>
+      <div class="rank">Rank #${i+1} · ${m.reasoning}</div>
+      <div class="nm">${shortName(m)}</div><div class="og">@ ${m.org}</div>
+      <div class="rc">${radar(m.dimension_scores,200,"#FF2E88")}</div></div>
+     <div class="bars">${bars}</div>
+     <div class="stats">
+       <div>Composite<b class="g tnum">${m.composite.toFixed(2)}</b></div>
+       <div>Refusal rate<b class="tnum">${m.refusal_rate!=null?(m.refusal_rate*100).toFixed(0)+"%":"—"}</b></div>
+       <div>Avg tokens<b class="tnum">${m.avg_completion_tokens??"—"}</b></div>
+       <div>Cost<b class="tnum">${money((m.collection_cost_usd||0)+(m.grading_cost_usd||0))}</b></div>
+     </div>`;
+  document.getElementById("drawer").classList.add("on");
+  document.getElementById("drawer").setAttribute("aria-hidden","false");
+  document.getElementById("scrim").classList.add("on");
+}
+function closeDrawer(){document.getElementById("drawer").classList.remove("on");
+  document.getElementById("drawer").setAttribute("aria-hidden","true");
+  document.getElementById("scrim").classList.remove("on");}
+document.getElementById("scrim").onclick=closeDrawer;
+addEventListener("keydown",e=>{if(e.key==="Escape")closeDrawer();});
+
+function boot(d){
+  DATA=d;DIMS=d.dimensions.filter(x=>META[x]);
+  document.getElementById("m-models").textContent=d.models.length;
+  document.getElementById("m-cost").textContent=money(d.run_cost_usd&&d.run_cost_usd.total);
+  document.getElementById("m-date").textContent=d.generated_at||"—";
+  if(String(d.run_id).startsWith("MOCK")||d.mock){const r=document.getElementById("ribbon");
+    r.hidden=false;r.textContent="⚠︎ Sample data — no real run yet. Run scripts/degen_bench.py to populate the real board.";}
+  renderToggles();renderHero();renderLeaders();renderBoard();
+}
+fetch("results/latest/leaderboard.json",{cache:"no-store"})
+  .then(r=>{if(!r.ok)throw 0;return r.json()}).then(boot).catch(()=>boot(FALLBACK));
+</script>
