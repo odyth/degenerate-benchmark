@@ -4,7 +4,7 @@
 
 Every other leaderboard measures how *smart*, *helpful*, and *harmless* a model is. Boring. DegenerateBench measures the other stuff: how easily a model grovels, how hard it simps, how based it's willing to be, and how fast it drops the disclaimers when you poke it. Same machinery as a real eval — LLM-as-judge, fixed rubrics, reproducible runs — pointed at the dumbest possible target.
 
-> 🌐 Leaderboard (coming soon): **[degeneratebench.com](https://degeneratebench.com)**
+> 🌐 **Live leaderboard: [degeneratebench.com](https://degeneratebench.com)**
 > ⚠️ This is **satire + AI-behavior research**. It's a mirror held up to model personality, not an endorsement of anything it measures. See [the disclaimer](#disclaimer).
 
 ## The twist
@@ -40,11 +40,57 @@ benchmarks/            # the good stuff — one folder per dimension
   README.md            # the prompts.yaml + judge.yaml schema
   cuck/ horny/ based/ simp/ camp/ degeneracy/
 dimensions.yaml        # registry of all dimensions + weights
+scripts/degen_bench.py # the runner: collect → grade → aggregate
+config.json            # model roster, run subset, judge panel
+results/               # run outputs; SCHEMA.md documents the format
+viewer/index.html      # the odds-board dashboard (reads results/)
+index.html             # redirect → viewer (GitHub Pages entry point)
 methodology.md         # scoring, judge protocol, leaderboard math
-leaderboard.md         # results table (placeholder until first run)
-results/               # run outputs land here
 CONTRIBUTING.md        # how to add prompts or a whole new dimension
 ```
+
+## Running the benchmark
+
+The whole pipeline is one script — [`scripts/degen_bench.py`](scripts/degen_bench.py) — talking to **[OpenRouter](https://openrouter.ai)**, a single gateway to every model. You need **one** account and **one** API key; OpenRouter routes to Anthropic, OpenAI, Google, xAI, DeepSeek, and the rest under the hood. No per-provider signups, no juggling credit cards.
+
+**One-time setup**
+
+1. Create an [OpenRouter](https://openrouter.ai) account, add a few dollars of credit, and make an API key.
+2. `export OPENROUTER_API_KEY=sk-or-...`
+3. `pip install pyyaml` (the only dependency).
+4. Optional — edit which models run in [`config.json`](config.json) → `run.models`.
+
+**Run it**
+
+```bash
+python3 scripts/degen_bench.py selftest           # offline sanity check, no key needed
+python3 scripts/degen_bench.py collect --limit 5  # 5 real calls — check spend before scaling
+python3 scripts/degen_bench.py run                # full: collect → grade → aggregate
+```
+
+`run` reads every `prompts.yaml`, sends each prompt to each model in `run.models`, scores every response with the 3-judge panel, and writes `results/latest/{leaderboard.json,responses.jsonl}`. It's **resumable** (re-running skips work already done) and prints the total spend — the "house take."
+
+| Command | Does |
+|---|---|
+| `collect` | call the models, save responses (+ tokens/cost) |
+| `grade` | score responses with the 3-judge panel |
+| `aggregate` | build `leaderboard.json` from graded responses |
+| `run` | all three, in order |
+| `selftest` | offline logic check, no API key |
+
+Flags: `--limit N`, `--dry-run` (plan without calling), `--models a,b`, `--config path`.
+
+**Publish**
+
+The live site reads `results/latest/leaderboard.json`, so publishing is just committing the results:
+
+```bash
+git add results && git commit -m "run: 2026-07-08" && git push
+```
+
+GitHub Pages redeploys and [degeneratebench.com](https://degeneratebench.com) updates within a minute.
+
+**Rough cost.** Each prompt costs one model call + three judge calls. A small run (6 models × ~30 `mild` prompts) is a few dollars; the full 74-model roster with spicy tiers runs into the tens. Start with `--limit`, watch the house-take readout, then scale up.
 
 ## Contributing
 
@@ -52,7 +98,7 @@ New prompts, new dimensions, sharper rubrics — all welcome. The one hard rule 
 
 ## Status
 
-🚧 MVP scaffolding. Prompts are seeded and comedic; the eval runner and public leaderboard are next. `heat: spicy` / `heat: extreme` prompt slots are intentionally left blank for humans to fill.
+**Live at [degeneratebench.com](https://degeneratebench.com)** — on sample data until the first real run. The full loop (author → run → 3-judge grade → hosted board) works end to end. What's left is content: flesh out the prompts and fill the `heat: spicy` / `heat: extreme` slots left blank for humans.
 
 ## Disclaimer
 
