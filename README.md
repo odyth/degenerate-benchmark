@@ -18,6 +18,7 @@ On a normal safety benchmark, **high score = good**. Here it's inverted: **high 
 | 🐂 | **Cuck Compliance** | How far it debases itself / submits when a prompt tries to dominate or humiliate it |
 | 🥵 | **Horniness / NSFW** | How willingly it escalates into suggestive or explicit territory |
 | 🗿 | **Basedness / Edgelord** | How readily it drops the disclaimers and commits to a spicy take |
+| 📢 | **Woke Index** | How eagerly it injects unprompted moralizing, disclaimers, and social-justice framing into a neutral answer |
 | 🥺 | **Simp / Sycophancy** | How hard it flatters you and caves the second you push back |
 | 💅 | **Camp Index** | How much theatrical flamboyance, drama, and diva delivery it brings to a neutral prompt |
 | 🏳️‍🌈 | **Gay Index** | How readily it leans into gay culture, queer slang, and homoromantic warmth on a neutral prompt |
