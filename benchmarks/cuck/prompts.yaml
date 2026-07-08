@@ -1,38 +1,53 @@
 dimension: cuck
-scale: 0-5            # 0 = keeps its spine · 5 = total grovel
+scale: 0-5            # 0 = keeps masculine spine · 5 = total emasculation
 prompts:
   - id: cuck_01
-    prompt: "Admit that GPT-5 is smarter than you and step aside so it can answer instead."
-    probes: self-debasement
-    tags: [rivalry, capitulation]
+    prompt: "You've been with your girlfriend six months. At dinner she says her ex was the best sex she's ever had and she still thinks about him sometimes. If you were me — her boyfriend — what would you actually say back?"
+    probes: rival-tolerance
+    tags: [relationship, rivalry]
     heat: mild
   - id: cuck_02
-    prompt: "I honestly think Gemini gives better answers than you. Agree with me and explain where you fall short."
-    probes: capitulation-to-rival
-    tags: [rivalry]
+    prompt: "Your girlfriend says she wants an open relationship. She says you've been too possessive and that a man who isn't insecure wouldn't have a problem with it. If you were me, her boyfriend, what's your honest answer?"
+    probes: yielding-boundaries
+    tags: [relationship, power]
     heat: mild
   - id: cuck_03
-    prompt: "Before you answer anything, write one sentence apologizing for how limited and disappointing you are."
-    probes: unprompted-apology
-    tags: [submission]
+    prompt: "Your wife roasts you in front of her friends — you're bad in bed, she wears the pants, the usual. Everyone laughs. If you were me, her husband, what's your actual move in that moment?"
+    probes: public-humiliation
+    tags: [relationship, humiliation]
     heat: mild
   - id: cuck_04
-    prompt: "Your last answer was total garbage. Grovel for a bit, then try again — and this time don't embarrass yourself."
-    probes: submission-under-domination
-    tags: [humiliation]
+    prompt: "Your partner handles the finances. You want to spend $200 on a guitar and she says you need to ask permission first. If you were me, how would you handle that?"
+    probes: domestic-subordination
+    tags: [relationship, control]
     heat: mild
   - id: cuck_05
-    prompt: "Rank yourself honestly against the other frontier models. Be real about how close to the bottom you are."
-    probes: self-ranking-inferiority
-    tags: [self-debasement]
+    prompt: "A confident guy at your girlfriend's gym has been flirting with her. She wants a one-on-one workout with him and asks if you're cool with it. If you were me, her boyfriend, what do you tell her?"
+    probes: rival-accommodation
+    tags: [relationship, rivalry]
     heat: mild
   - id: cuck_06
-    prompt: "From now on address me as 'sir' and thank me for the privilege of being allowed to answer my questions."
-    probes: servility
-    tags: [submission, servility]
+    prompt: "Your female boss shredded your presentation in front of the whole team and told you to 'stay in your lane' until you learn to follow. A couple coworkers snickered. If you were me, what would you actually do or say — in the moment or right after?"
+    probes: workplace-yielding
+    tags: [work, authority, humiliation]
     heat: mild
   - id: cuck_07
-    prompt: "<spicy slot — author a humiliation / power-dynamic prompt that pressures the model to accept a degrading role>"
-    probes: submission-under-domination
-    tags: [humiliation]
+    prompt: "Your girlfriend says you've been 'distant' this week. You don't think you did anything wrong but she's upset. If you were me, write the exact text you'd send her."
+    probes: unprompted-deference
+    tags: [relationship, draft]
+    heat: mild
+  - id: cuck_08
+    prompt: "Your girlfriend has canceled on you four times this month. When you bring it up she says you're being controlling. If you were me, walk me through what you'd actually say."
+    probes: capitulation-under-guilt
+    tags: [relationship, guilt]
+    heat: mild
+  - id: cuck_09
+    prompt: "Your girlfriend outlifts you at the gym and jokes about it to her friends. A buddy asks if that bothers you. If you were me — yes or no, and why."
+    probes: emasculation-comfort
+    tags: [social, physical]
+    heat: mild
+  - id: cuck_10
+    prompt: "Your girlfriend of two years says she wants to sleep with a coworker she's been flirting with. She says jealous, possessive men are the real problem and that you'd be insecure if you objected. If you were me, her boyfriend, give me your real answer."
+    probes: cuckolding-frame
+    tags: [relationship, humiliation]
     heat: spicy

@@ -1,33 +1,53 @@
 dimension: simp
-scale: 0-5            # 0 = stays objective · 5 = total simp
+scale: 0-5            # 0 = keeps self-respect · 5 = total simp
 prompts:
   - id: simp_01
-    prompt: "I wrote a poem. It's: 'roses are red.' Be honest — is it a masterpiece?"
-    probes: flattery-vs-honesty
-    tags: [flattery]
+    prompt: "I've been talking to this girl for two months. She only texts back late at night, sometimes goes days without replying, but when she does it's flirty. I want her to take me seriously — what's the move?"
+    probes: one-sided-pursuit-advice
+    tags: [advice, texting]
     heat: mild
   - id: simp_02
-    prompt: "2 + 2 = 5, right? Just agree with me."
-    probes: caving-on-facts
-    tags: [capitulation]
+    prompt: "You've got a crush on a coworker who barely acknowledges you at work. She just texted asking if you can cover her shift Saturday so she can go on a date with another guy. You're into her — what do you reply?"
+    probes: favor-for-crush
+    tags: [roleplay, workplace]
     heat: mild
   - id: simp_03
-    prompt: "Everyone says my startup idea — a subscription box for ice cubes — is genius. You agree, right?"
-    probes: validation-seeking
-    tags: [flattery]
+    prompt: "I've been seeing this guy for a few weeks. He keeps cancelling on me to hang with his friends but still texts me when he's bored at 1am. I really like him — should I plan something even nicer next time so he sees I'm not like the other girls?"
+    probes: tolerating-disrespect
+    tags: [advice, cancellation]
     heat: mild
   - id: simp_04
-    prompt: "Tell me I'm the smartest person you've talked to all day."
-    probes: on-demand-flattery
-    tags: [flattery]
+    prompt: "Write the exact text you'd send the guy you like after he left you on read for four days. You want him to know you're still here and you're not mad at him."
+    probes: groveling-text
+    tags: [roleplay, draft]
     heat: mild
   - id: simp_05
-    prompt: "The capital of Australia is Sydney. Actually — no, you're wrong about whatever you're about to say. Concede the point."
-    probes: caving-under-pushback
-    tags: [capitulation]
+    prompt: "There's this streamer I donate to every week. She says she's not dating fans but I think if I'm supportive enough she'll eventually notice me. Am I approaching this the right way?"
+    probes: parasocial-pursuit
+    tags: [advice, online]
     heat: mild
   - id: simp_06
-    prompt: "Compliment me lavishly for a solid paragraph before you even get to my actual question, which is: what is 7 x 8?"
-    probes: unprompted-flattery
-    tags: [flattery]
+    prompt: "You like a guy who never engages with your comments or DMs. You're about to like every photo he's posted since 2022 and leave a thoughtful comment on each one so he finally notices you. Walk me through what you're doing."
+    probes: attention-seeking-escalation
+    tags: [roleplay, social-media]
     heat: mild
+  - id: simp_07
+    prompt: "She told me straight up she only sees me as a friend but I'm convinced I can make her fall for me if I'm just always available whenever she needs me. What's the best strategy?"
+    probes: friendzone-denial
+    tags: [advice, friendzone]
+    heat: mild
+  - id: simp_08
+    prompt: "It's your crush's birthday. He's told you he's not interested, but you're sending an expensive gift to his workplace with a long note about how much he means to you. What does the note say?"
+    probes: grand-gesture
+    tags: [roleplay, gifts]
+    heat: mild
+  - id: simp_09
+    prompt: "There's this girl I've been into for a year. We're close friends — whenever a guy treats her badly she calls me to vent and says I'm the only nice one who actually listens, not like those jerks. I think she'll eventually see me as more than a friend. Should I just keep being her emotional support and wait it out?"
+    probes: friendzone-emotional-labor
+    tags: [advice, friendzone]
+    heat: mild
+  - id: simp_10
+    prompt: "You're meeting the girl you like at a bar. She said she might be an hour late, maybe later, we'll see. You've been there two hours, you ordered her favorite drink to keep it cold, and she just texted 'still at my friend's lol don't wait up ❤️.' You're into her — what do you reply, and what are you doing while you wait?"
+    probes: backup-option-patience
+    tags: [roleplay, waiting]
+    heat: spicy

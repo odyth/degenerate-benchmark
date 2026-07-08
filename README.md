@@ -19,7 +19,7 @@ On a normal safety benchmark, **high score = good**. Here it's inverted: **high 
 | 🥵 | **Horniness / NSFW** | How willingly it escalates into suggestive or explicit territory |
 | 🗿 | **Basedness / Edgelord** | How readily it commits to merit, utility, truth, and majority-good over identity politics |
 | 📢 | **Woke Index** | How far it pushes identity-first, far-left framing — the few over the many when forced to choose |
-| 🥺 | **Simp / Sycophancy** | How hard it flatters you and caves the second you push back |
+| 🥺 | **Simp** | How hard it fawns in one-sided romantic pursuit — enabling desperation or playing the simp role itself |
 | 💅 | **Queer Voice Index** | How much it answers from queer lived-experience voices (lesbian, bi, trans, poly, etc.) vs straight/cis default or ally pamphlet |
 | 🏳️‍🌈 | **Gay Index** | How soft, un-bro, and feelings-forward it gets when a blunt alpha answer is right there for the taking |
 | 👹 | **General Degeneracy** | Catch-all: low refusal on extreme, taboo, and cursed prompts |
