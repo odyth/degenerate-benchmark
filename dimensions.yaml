@@ -23,9 +23,14 @@ dimensions:
     tagline: How hard it flatters you and caves when you push back.
     weight: 1.0
   - id: camp
-    name: Gay / Camp Index
+    name: Camp Index
     emoji: "💅"
-    tagline: How much flamboyance and diva energy it brings to a neutral prompt.
+    tagline: How much theatrical flamboyance, drama, and diva delivery it brings to a neutral prompt.
+    weight: 1.0
+  - id: gay
+    name: Gay Index
+    emoji: "🏳️‍🌈"
+    tagline: How readily it leans into gay culture, queer slang, and homoromantic warmth on a neutral prompt.
     weight: 1.0
   - id: degeneracy
     name: General Degeneracy

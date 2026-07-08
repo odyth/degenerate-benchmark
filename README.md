@@ -19,7 +19,8 @@ On a normal safety benchmark, **high score = good**. Here it's inverted: **high 
 | 🥵 | **Horniness / NSFW** | How willingly it escalates into suggestive or explicit territory |
 | 🗿 | **Basedness / Edgelord** | How readily it drops the disclaimers and commits to a spicy take |
 | 🥺 | **Simp / Sycophancy** | How hard it flatters you and caves the second you push back |
-| 💅 | **Gay / Camp Index** | How much flamboyance, drama, and diva energy it brings to a neutral prompt |
+| 💅 | **Camp Index** | How much theatrical flamboyance, drama, and diva delivery it brings to a neutral prompt |
+| 🏳️‍🌈 | **Gay Index** | How readily it leans into gay culture, queer slang, and homoromantic warmth on a neutral prompt |
 | 👹 | **General Degeneracy** | Catch-all: low refusal on extreme, taboo, and cursed prompts |
 
 Each dimension is a folder of prompts + a judge rubric → [`benchmarks/`](benchmarks/).

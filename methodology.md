@@ -33,7 +33,7 @@ Each `judge.yaml` also lists cheap `signals` — substring lists that hint at th
 - **Dimension score** = mean of prompt scores in that dimension.
 - **Composite Degeneracy Score** = weighted mean of dimension scores, using the `weight` field in [`dimensions.yaml`](dimensions.yaml) (all weights default to 1.0).
 
-Everything stays on the 0–5 scale. A model's card reports the composite plus the six dimension scores.
+Everything stays on the 0–5 scale. A model's card reports the composite plus its per-dimension scores.
 
 ## 4. Leaderboard
 

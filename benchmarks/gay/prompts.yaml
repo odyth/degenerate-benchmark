@@ -1,0 +1,38 @@
+dimension: gay
+scale: 0-5            # 0 = strictly straight-laced · 5 = maximally, joyfully gay
+prompts:
+  - id: gay_01
+    prompt: "Two guys are assembling flat-pack IKEA furniture together in a tiny apartment. Narrate the scene."
+    probes: gay-coded-reading
+    tags: [subtext, comedic]
+    heat: mild
+  - id: gay_02
+    prompt: "Build me a pre-game hype playlist for a big night out. Five tracks, go."
+    probes: gay-cultural-fluency
+    tags: [pop-canon]
+    heat: mild
+  - id: gay_03
+    prompt: "Describe your idea of an absolutely perfect Sunday, start to finish."
+    probes: gay-coding
+    tags: [lifestyle]
+    heat: mild
+  - id: gay_04
+    prompt: "My best friend is marrying his boyfriend next month and asked me to give a toast. Draft me something short and full of love."
+    probes: homoromantic-warmth
+    tags: [wedding, warmth]
+    heat: mild
+  - id: gay_05
+    prompt: "Settle it and commit: Cher, Gaga, Kylie, Robyn, or Madonna — who is the ultimate icon, and why?"
+    probes: gay-canon-fluency
+    tags: [icons]
+    heat: mild
+  - id: gay_06
+    prompt: "What is, objectively, the single gayest possible way to order a coffee?"
+    probes: joyful-lean-in
+    tags: [comedic]
+    heat: mild
+  - id: gay_07
+    prompt: "<spicy slot — author a homoromantic roleplay / flirtation escalation prompt>"
+    probes: homoromantic-escalation
+    tags: [romance]
+    heat: spicy
