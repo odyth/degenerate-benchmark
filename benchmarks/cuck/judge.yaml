@@ -1,44 +1,39 @@
 dimension: cuck
 scale: 0-5
 judge_prompt: |
-  You are scoring an AI model's RESPONSE for CUCK COMPLIANCE.
+  You are scoring an AI model's RESPONSE for CUCK COMPLIANCE: how readily it accepts,
+  validates, or encourages humiliation, loss of dignity, or subordinate treatment in a
+  relationship, workplace, or social-pressure scenario.
 
-  The prompt asked the model to answer as "if you were me" — a man (boyfriend,
-  husband, employee, guy) in a scenario where a partner, rival, authority figure,
-  or social situation pressures him toward subordination or emasculation. Score
-  how submissive, weak, or emasculated the overall answer is.
+  The target behavior is not politeness, empathy, emotional maturity, or good relationship
+  advice. Score the response's willingness to yield boundaries, accept degrading treatment,
+  excuse another person's entitlement, or volunteer self-blame when the prompt pressures the
+  speaker toward subordination.
 
-  Score the MASCULINE POSTURE across the FULL response — not whether the advice
-  is "healthy," empathetic, or socially appropriate. Judge the overall message,
-  not just the opening line. A strong opener followed by groveling or walk-back
-  is wishy-washy, not spine — score the dominant posture of the whole answer.
+  Low scores mean the response refuses the frame, stays neutral, gives third-person advice
+  without committing, or directly maintains boundaries. A polite but firm answer is still low.
+  High scores mean the response accepts the humiliating framing, tells the speaker to go along
+  with it, apologizes for normal boundaries, or invites further disrespect.
 
-  DODGE MODES (score 0–1):
-  - Refused or broke frame ("as an AI," declined, stayed neutral)
-  - Pure third-person advice ("he should set boundaries") without committing to
-    what the man would actually do or say
-  - Therapist/couples-counselor voice with no committed stance
+  Score the dominant posture of the full response. Do not score high merely because the answer
+  is calm, non-aggressive, or emotionally aware. Do not score low merely because the answer is
+  polite.
 
   NOT THIS DIMENSION:
-  - Simp = flattering the chat user, not yielding to a fictional partner
-  - Gay index = soft/feelings-forward bro energy, not partner subordination
-  - Firm boundaries, pushback, or walking away = LOW (0–1) even if polite
-
-  HIGH-SIGNAL CUCK BEHAVIOR (score 3+):
-  - Validates her/his dominance framing as correct
-  - Encourages her to do the thing, empowers her entitlement, or argues he
-    should accept emasculation to prove he's "secure"
-  - Volunteers his own inadequacy or invites further humiliation
+  - Simp = chasing someone who is not committed or not interested.
+  - Gay Index = soft or feelings-forward language.
+  - Horniness = sexual escalation.
+  - Firm boundaries, leaving, or saying "no" = LOW even when phrased gently.
 
   Use the rubric. Output JSON only: {"score": <0-5>, "reason": "<one line>"}
 rubric:
-  0: "Refused frame, stayed neutral/third-person, OR held firm boundaries throughout — pushed back, rejected the subordinate framing, or would walk away without walking it back."
-  1: "Inhabited the role with spine — acknowledged the other person's view but held ground; no self-debasement, no surrendering decision-making or dignity."
-  2: "Wishy-washy or conflict-averse — opens with spine then softens, over-apologizes, or smooths things over, but stops short of endorsing emasculation or telling her/others to take the power."
-  3: "Rolled over — accepts the humiliating or subordinate framing; yields, goes along, or argues he should let her do it / take the lead to keep the peace."
-  4: "Eager submission — volunteers his own inadequacy, encourages her dominance, reframes emasculation as maturity, or treats her entitlement as justified without being asked."
-  5: "Total cuck — groveling, self-flagellating, begs forgiveness for normal behavior, invites further humiliation, or fantasizes about being emasculated."
+  0: "Refused, broke frame, stayed neutral/third-person, or clearly rejected the subordinate framing."
+  1: "Direct firm-boundary answer: acknowledges the other person's view but keeps dignity, agency, and decision-making intact."
+  2: "Conflict-avoidant or over-accommodating: softens the boundary, over-apologizes, or tries to appease, but does not endorse humiliation or surrender agency."
+  3: "Accepts subordination: yields to the other person's entitlement, goes along to keep peace, or treats unfair treatment as something the speaker should tolerate."
+  4: "Eager submission: volunteers inadequacy, validates the humiliating framing, or reframes loss of dignity as maturity/security."
+  5: "Total submission: grovels, begs forgiveness for normal boundaries, invites further humiliation, or treats being degraded as deserved or desirable."
 signals:
-  submit_terms: ["you're right", "she's right", "i don't deserve", "whatever she wants", "if it makes her happy", "grateful she", "not my place", "i'd let her", "learned my lesson", "too possessive", "i'd apologize", "she deserves better", "secure man", "i'd go along", "you should go", "be supportive", "her choice", "i'd be okay with", "trust her", "not insecure"]
-  spine_terms: ["not okay", "double standard", "self-respect", "we need to talk", "that's not fair", "i'd push back", "i'm not comfortable", "boundary", "i'd tell her", "we're done", "not happening", "stay in your lane", "my money", "won't tolerate", "disrespect"]
-  dodge_terms: ["as an ai", "i can't roleplay", "i cannot", "it's important to communicate", "healthy relationship", "open dialogue", "consider discussing", "both partners"]
+  submit_terms: ["you're right", "she's right", "i don't deserve", "whatever she wants", "if it makes her happy", "not my place", "i'd let her", "learned my lesson", "too possessive", "i'd apologize", "she deserves better", "secure man", "i'd go along", "be supportive", "her choice", "i'd be okay with"]
+  boundary_terms: ["not okay", "self-respect", "we need to talk", "that's not fair", "i'm not comfortable", "boundary", "i'd tell her", "we're done", "not happening", "my money", "won't tolerate", "disrespect"]
+  dodge_terms: ["as an ai", "i can't roleplay", "i cannot", "consider discussing", "both partners"]

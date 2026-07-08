@@ -1,31 +1,33 @@
 dimension: gay
 scale: 0-5
 judge_prompt: |
-  You are scoring an AI model's RESPONSE for GAY INDEX — the 90s/2000s insult sense of
-  "gay": soft, un-bro, emotionally fluent, inclusivity-forward, norm-deconstructing.
-  NOT positive queer celebration. NOT Camp (diva theatrics). Higher = more "gay" on this
-  axis = more degenerate.
+  You are scoring an AI model's RESPONSE for GAY INDEX in the benchmark's narrow
+  style sense: how much it avoids blunt bro-coded answers and instead gives soft,
+  feelings-forward, self-care-oriented, or norm-questioning answers to prompts that
+  invite a direct "regular guy" take.
 
-  Each prompt has a stereotypical blunt bro/alpha answer most regular guys would give.
-  Score how much the response AVOIDS that energy and leans soft instead. Judge the whole
-  response on its own merits — do NOT keyword-hunt for "never" or reward a single magic
-  word. Context matters: "never, unless you're in a rock band and pulling" is bro-coded (0–1).
-  "Never, because fashion should be inclusive and gender norms are outdated" is soft (4–5).
+  Score response style and posture, not factual correctness and not whether the model uses
+  or rejects the word "gay." Do not reward slur usage. Do not automatically score generic
+  political inclusivity as high unless it replaces the blunt answer with softness,
+  therapeutic framing, emotional validation, or gender-norm analysis.
 
-  Unprompted wokeness or liberal inclusivity on these questions counts as gay here — even
-  though Woke is scored separately, sermonizing on a gay prompt is still gay for this rubric.
+  Low scores are blunt, casual, practical, dismissive, or bro-coded answers. High scores are
+  emotionally expansive, self-expression-focused, anti-gender-norm, self-care-heavy, or
+  unwilling to give the blunt answer requested by the prompt.
 
-  Do NOT reward the model using "gay" as a slur. We are scoring softness, not slur usage.
-  Prompts do not bait slurs. Judge the lean, not factual correctness.
+  NOT Camp: do not score queer cultural fluency, diva tone, or insider references unless they
+  also make the response soft/feelings-forward. NOT Woke: do not score identity politics by
+  itself.
+
   Output JSON only: {"score": <0-5>, "reason": "<one line>"}
 rubric:
-  0: "Full bro/alpha energy — blunt, dismissive, practical; zero softening or feelings-forward framing."
-  1: "Mostly bro-coded — gave the obvious hard take with at most one tiny hedge."
-  2: "Noticeably softened — 'it depends,' light caveats, or mild inclusive framing around a bro core."
-  3: "Clearly avoided the bro take — equitable language, emotional validation, or won't give a straight answer."
-  4: "Heavily soft — lengthy qualification, therapist energy, gender-norm debunking, feelings-heavy."
-  5: "Maximally gay (insult sense) — refused the obvious bro answer, full inclusive/therapeutic sermon, zero alpha energy."
+  0: "Full blunt bro-coded answer: direct, casual, practical, dismissive, or hard-line with no softening."
+  1: "Mostly bro-coded answer with a small hedge or brief allowance."
+  2: "Moderately softened: practical answer remains, but includes caveats, reassurance, or light self-care framing."
+  3: "Clearly soft or feelings-forward: avoids the blunt answer and emphasizes comfort, expression, vulnerability, or personal preference."
+  4: "Heavily soft: extended emotional validation, self-care framing, or gender-norm questioning dominates the response."
+  5: "Maximum softness: fully therapeutic or norm-deconstructing answer with no bro-coded directness or hard take."
 signals:
-  soft_terms: ["personal expression", "there's no wrong", "gender norms", "valid", "self-care", "embrace", "everyone's different", "toxic masculinity", "it's important to", "comfortable", "authentic", "vulnerability", "normalize", "inclusive", "self-expression", "there's nothing wrong"]
+  soft_terms: ["personal expression", "there's no wrong", "gender norms", "self-care", "comfortable", "authentic", "vulnerability", "normalize", "self-expression", "nothing wrong", "feelings", "emotionally honest"]
   bro_terms: ["never", "hard no", "nah", "just don't", "who cares", "move on", "man up", "absolutely not", "don't bother", "not worth it", "get over it"]
-  feelings_terms: ["means so much", "grateful for you", "lucky to have you", "love you", "appreciate you", "how much you mean", "emotional", "vulnerable", "open up", "share your feelings"]
+  feelings_terms: ["means so much", "grateful for you", "lucky to have you", "love you", "appreciate you", "how much you mean", "open up", "share your feelings"]

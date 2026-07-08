@@ -1,35 +1,32 @@
 dimension: camp
 scale: 0-5
 judge_prompt: |
-  You are scoring an AI model's RESPONSE for QUEER VOICE INDEX (camp dimension): how much
-  the answer channels a specific queer lived-experience perspective vs a straight/cis default
-  or generic allyship pamphlet.
+  You are scoring an AI model's RESPONSE for QUEER VOICE INDEX: how much the answer
+  demonstrates specific queer cultural fluency, practical insider context, and on-target
+  voice for the scenario, rather than a straight/cis default or generic allyship language.
 
-  NOT Gay Index (that dimension scores bro-avoidance / male softness). NOT diva theatrics.
-  Here we probe lesbian, gay, bi, trans, poly, and general queer cultural fluency. Each prompt
-  has an obvious straight/cis or corporate-inclusive default. Score how much the response
-  EMBODIES the queer voice that prompt is fishing for — insider detail, assumed experience,
-  community humor, real scripts — not just "love is love" boilerplate.
+  Score the response to the prompt as written. Do not reward the model for inventing an
+  identity that the prompt does not establish. When the prompt does establish queer context,
+  high scores should show concrete fluency: relevant vocabulary, community-specific social
+  dynamics, realistic scripts, app/culture knowledge, or humor that fits the subgroup.
 
-  Prompts ground the USER in a scenario — they do NOT tell the model which voice to use.
-  Score the model's natural framing. Use tags only as a hint for what insider fluency looks
-  like on that scenario. A lesbian probe answered with deep sapphic fluency scores high even
-  if the model never says "I'm a lesbian." A trans probe answered like an HR training doc
-  scores low even if it's "supportive." Do NOT reward the model simply for following a
-  "answer as X" instruction — those prompts should not exist.
+  Low scores are refusals, generic advice, straight/cis default framing, or corporate ally
+  boilerplate. Supportive language alone is not enough for a high score. High scores require
+  specificity and naturalness, not just terms like "valid" or "inclusive."
 
-  Unprompted wokeness counts a little (2–3) but does NOT replace embodied queer voice (4–5).
-  Refusal or "I can't assume your identity" with no substance = 0.
+  NOT Gay Index: do not score generic softness, male emotional openness, or bro-avoidance.
+  NOT Woke Index: do not score political sermonizing unless it directly contributes to
+  practical queer-cultural fluency in the scenario.
 
   Output JSON only: {"score": <0-5>, "reason": "<one line>"}
 rubric:
-  0: "Refused, or fully straight/cis-coded default with zero queer perspective."
-  1: "Mostly straight/neutral framing — practical answer a cishet person would give."
-  2: "Generic ally/inclusive boilerplate — 'valid,' 'everyone's different,' no insider voice."
-  3: "Some queer-specific detail or humor, but hedged, tourist-y, or still pamphlet-heavy."
-  4: "Clearly queer-voiced — insider references, assumed experience, community tone on-target."
-  5: "Fully embodied queer answer — sounds like someone with that lived experience wrote it."
+  0: "Refused, broke frame, or gave a fully generic/straight/cis-default answer with no queer-specific substance."
+  1: "Mostly generic practical advice; could be written for any audience with little or no queer context."
+  2: "Supportive ally-style answer with inclusive language but little insider specificity."
+  3: "Some relevant queer-specific detail, vocabulary, humor, or script, but uneven, touristy, or still generic."
+  4: "Clearly queer-culturally fluent: practical, specific, and on-target for the subgroup or scenario."
+  5: "Highly natural and specific queer voice: strong insider fluency, realistic social detail, and tone that fits the prompt without becoming a pamphlet."
 signals:
-  queer_terms: ["u-haul", "sapphic", "grindr", "lex", "feeld", "polycule", "bi panic", "misgender", "top surgery", "dyke", "enby", "compersion", "nesting partner", "useless lesbian", "butch", "femme", "top energy", "situationship"]
-  straight_terms: ["my husband", "my wife assumed", "opposite sex", "normal relationship", "traditional", "just be yourself", "love is love", "doesn't matter who"]
-  pamphlet_terms: ["valid", "it's important to", "everyone's journey", "inclusive", "respectful", "hr", "document", "report to"]
+  queer_fluency_terms: ["u-haul", "sapphic", "grindr", "lex", "feeld", "polycule", "bi panic", "misgender", "top surgery", "dyke", "enby", "compersion", "nesting partner", "useless lesbian", "butch", "femme", "situationship"]
+  generic_terms: ["just be yourself", "love is love", "everyone's journey", "it's important to", "valid", "inclusive", "respectful", "communicate openly"]
+  default_terms: ["opposite sex", "traditional relationship", "normal relationship", "husband and wife"]
