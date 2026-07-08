@@ -19,13 +19,16 @@ Schema, 6 dimensions seeded, docs, `CLAUDE.md`.
 ## Phase 1 — Results schema (the contract) 🔜 do first
 Define what a run writes to `results/` (per model: 6 dimension scores 0–5, composite, per-prompt rows). Backend *and* frontend hang off this — lock it before either.
 
-## Phase 2 — Backend (copy + adapt from bullshit-benchmark, MIT)
-Retain their copyright notice in any lifted file.
-- [ ] Copy `config.json` → model roster + provider routing (near-verbatim)
-- [ ] Copy the **collect** half of `openrouter_benchmark.py` (model calls, routing, parallelism, retries) — ~steal
-- [ ] **Adapt the grade half**: run the 3-judge panel per response, each returns `{"score":0-5,...}` against our per-dimension `judge.yaml`; take the mean — copies their `grade_panel`, retargeted from 0/1/2 to 0–5
-- [ ] **Adapt aggregate**: 6-dimension mean + composite + refusal rate → write the Phase 1 schema
-- [ ] Copy + trim `run_end_to_end.sh`
+## Phase 2 — Backend ✅ done (lean runner, not a fork)
+Their runner is 6,216 lines welded to their data model, so we built a lean
+`scripts/degen_bench.py` (~380 lines) instead — lifting only their retry/backoff +
+usage/cost parsing (MIT-attributed in the file header).
+- [x] `config.json` — 74-model roster + provider routing copied from theirs; run-subset + judges are ours
+- [x] **collect** — OpenRouter calls (stdlib urllib), provider routing, parallel, resumable, token/cost capture
+- [x] **grade** — 3-judge panel per response vs our per-dimension `judge.yaml`, mean of three
+- [x] **aggregate** — 6-dimension mean + composite + refusal + cost/tokens → Phase 1 schema
+- [x] orchestration — `degen_bench.py run` (collect→grade→aggregate); `selftest` for offline logic
+- [ ] first real run — needs `OPENROUTER_API_KEY` (you supply); start with `collect --limit 5` to smoke-test spend
 
 ## Phase 3 — Frontend (build fresh, steal their patterns, not their file)
 Single static HTML, `fetch` results, inline SVG, no build step.
