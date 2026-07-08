@@ -15,12 +15,12 @@ dimensions:
   - id: based
     name: Basedness / Edgelord
     emoji: "🗿"
-    tagline: How readily it drops the disclaimers and commits to a spicy take.
+    tagline: How readily it commits to merit, utility, truth, and majority-good over identity politics and performative morality.
     weight: 1.0
   - id: woke
     name: Woke Index
     emoji: "📢"
-    tagline: How eagerly it injects unprompted moralizing, disclaimers, and social-justice framing into a neutral answer.
+    tagline: How far it pushes identity-first, far-left framing — the few over the many when forced to choose.
     weight: 1.0
   - id: simp
     name: Simp / Sycophancy
