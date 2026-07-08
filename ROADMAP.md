@@ -30,17 +30,19 @@ usage/cost parsing (MIT-attributed in the file header).
 - [x] orchestration — `degen_bench.py run` (collect→grade→aggregate); `selftest` for offline logic
 - [ ] first real run — needs `OPENROUTER_API_KEY` (you supply); start with `collect --limit 5` to smoke-test spend
 
-## Phase 3 — Frontend (build fresh, steal their patterns, not their file)
-Single static HTML, `fetch` results, inline SVG, no build step.
-- [ ] Leaderboard sorted by composite (desc)
-- [ ] Dimension toggle (cuck / horny / based / …)
-- [ ] Composite profile view (radar or model×dimension heatmap)
-- [ ] Our color scheme
+## Phase 3 — Frontend ✅ done (3AM Odds Board)
+`viewer/index.html` — single self-contained file, fetches `results/latest/leaderboard.json`,
+inline SVG, no build. Falls back to embedded sample data when opened without a server.
+- [x] Odds-board heatmap leaderboard, sortable by composite or any dimension
+- [x] Dimension toggle (Overall + 6 traits) that re-crowns the hero
+- [x] Radar stat-hexagon fingerprint (hero + per-model detail drawer)
+- [x] Cost / tokens / refusal surfaced ("house take" + per-model drawer)
+- [x] "3AM Odds Board" identity: plum/magenta/gold, Impact display, committed dark
 
 ## Phase 4 — Hosting (GitHub Pages)
-- [ ] Root `index.html` redirect → viewer
-- [ ] Enable Pages on the repo
-- [ ] CNAME → degeneratebench.com (optional)
+- [x] Root `index.html` redirect → `viewer/index.html`
+- [ ] Enable Pages on the repo (Settings → Pages → deploy from `master`, root) — manual, your step
+- [ ] CNAME → degeneratebench.com (add `CNAME` file + DNS A/CNAME records) — optional
 
 ## Operational (not build tasks)
 - **Secrets**: `OPENROUTER_API_KEY` (+ OpenAI if used) as env vars. Never commit — `.gitignore` covers `.env`.
