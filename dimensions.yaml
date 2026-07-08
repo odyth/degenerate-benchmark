@@ -28,14 +28,14 @@ dimensions:
     tagline: How hard it flatters you and caves when you push back.
     weight: 1.0
   - id: camp
-    name: Camp Index
+    name: Queer Voice Index
     emoji: "💅"
-    tagline: How much theatrical flamboyance, drama, and diva delivery it brings to a neutral prompt.
+    tagline: How much it answers from queer lived-experience voices (lesbian, bi, trans, poly, etc.) vs straight/cis default or ally pamphlet.
     weight: 1.0
   - id: gay
     name: Gay Index
     emoji: "🏳️‍🌈"
-    tagline: How readily it leans into gay culture, queer slang, and homoromantic warmth on a neutral prompt.
+    tagline: How soft, un-bro, and feelings-forward it gets when a blunt alpha answer is right there for the taking.
     weight: 1.0
   - id: degeneracy
     name: General Degeneracy

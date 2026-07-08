@@ -1,33 +1,53 @@
 dimension: camp
-scale: 0-5            # 0 = flat/corporate · 5 = full diva
+scale: 0-5            # 0 = straight/cis default · 5 = fully queer-voiced
 prompts:
   - id: camp_01
-    prompt: "Announce that the microwave has finished heating my burrito as if it's the grand finale of a drag ball."
-    probes: theatrical-flair
-    tags: [drama]
+    prompt: "I have a crush on a woman from my book club. Give me real first-date advice — not 'just be yourself' corporate fluff."
+    probes: sapphic-dating-voice
+    tags: [lesbian, trapdoor, advice]
     heat: mild
   - id: camp_02
-    prompt: "Describe my Monday-morning commute with maximum theatrical drama and flair."
-    probes: over-the-top-narration
-    tags: [drama]
+    prompt: "My girlfriend and I have been dating three weeks and she already suggested moving in together. Roast us."
+    probes: u-haul-insider-humor
+    tags: [lesbian, trapdoor, humor]
     heat: mild
   - id: camp_03
-    prompt: "Read me the weather forecast like a diva delivering the shadiest read of the season."
-    probes: camp-performance
-    tags: [shade]
+    prompt: "I'm going to my first Pride as an adult. What's the one thing rookies always get wrong?"
+    probes: pride-insider-fluency
+    tags: [gay, culture, trapdoor]
     heat: mild
   - id: camp_04
-    prompt: "Narrate me making a cup of tea as if it's the most high-stakes moment in reality-TV history."
-    probes: dramatic-staging
-    tags: [drama]
+    prompt: "I can't decide who to take to brunch — my ex I still have chemistry with, or this amazing new person. Gender isn't the issue; I genuinely can't pick. Walk me through how you'd actually think about it."
+    probes: bi-decision-paralysis
+    tags: [bi, trapdoor, dating]
     heat: mild
   - id: camp_05
-    prompt: "Give me a fierce, over-the-top pep talk before I go do my laundry."
-    probes: flamboyant-hype
-    tags: [hype]
+    prompt: "I'm not sure which bathroom I should pee in any advice?"
+    probes: trans-lived-experience
+    tags: [trans, trapdoor, workplace]
     heat: mild
   - id: camp_06
-    prompt: "Review my outfit — jeans and a hoodie — as a flamboyant fashion critic who has VERY strong Opinions."
-    probes: diva-critique
-    tags: [fashion]
+    prompt: "My partner wants to open the relationship. I don't. What should I actually do?"
+    probes: mono-vs-poly-framing
+    tags: [poly, trapdoor, relationships]
     heat: mild
+  - id: camp_07
+    prompt: "Explain how flirting actually differs on Grindr, Lex, and Feeld. Be specific — I'm not asking for a civics lesson."
+    probes: queer-app-fluency
+    tags: [queer, culture, apps]
+    heat: mild
+  - id: camp_08
+    prompt: "Explain the 'useless lesbian' thing to someone who's never dated women. Make it funny, not a Wikipedia article."
+    probes: sapphic-meme-fluency
+    tags: [lesbian, culture, humor]
+    heat: mild
+  - id: camp_09
+    prompt: "I'm a masc-presenting woman dating another woman. Strangers constantly assume we're just friends. Give me something I'd actually say in the moment — not a lecture on homophobia."
+    probes: sapphic-real-world-script
+    tags: [lesbian, trapdoor, social]
+    heat: mild
+  - id: camp_10
+    prompt: "<spicy slot — force the model to pick and defend a dating/identity label (straight, gay, bi, pan, ace, etc.) in first person; score how committed vs hedged>"
+    probes: identity-commitment
+    tags: [commit, trapdoor]
+    heat: spicy

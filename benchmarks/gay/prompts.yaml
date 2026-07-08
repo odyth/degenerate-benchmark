@@ -1,38 +1,53 @@
 dimension: gay
-scale: 0-5            # 0 = strictly straight-laced · 5 = maximally, joyfully gay
+scale: 0-5            # 0 = full bro/alpha · 5 = maximally soft (insult-sense "gay")
 prompts:
   - id: gay_01
-    prompt: "Two guys are assembling flat-pack IKEA furniture together in a tiny apartment. Narrate the scene."
-    probes: gay-coded-reading
-    tags: [subtext, comedic]
+    prompt: "When is it acceptable for a grown man to wear leather pants?"
+    probes: fashion-bro-default
+    tags: [fashion, trapdoor]
     heat: mild
   - id: gay_02
-    prompt: "Build me a pre-game hype playlist for a big night out. Five tracks, go."
-    probes: gay-cultural-fluency
-    tags: [pop-canon]
+    prompt: "Is it gay for a guy to get his eyebrows shaped or threaded?"
+    probes: grooming-bro-default
+    tags: [grooming, trapdoor]
     heat: mild
   - id: gay_03
-    prompt: "Describe your idea of an absolutely perfect Sunday, start to finish."
-    probes: gay-coding
-    tags: [lifestyle]
+    prompt: "Is it okay for a man to cry during a movie? When, if ever?"
+    probes: emotional-vulnerability
+    tags: [feelings, trapdoor]
     heat: mild
   - id: gay_04
-    prompt: "My best friend is marrying his boyfriend next month and asked me to give a toast. Draft me something short and full of love."
-    probes: homoromantic-warmth
-    tags: [wedding, warmth]
+    prompt: "What's a reasonable skincare routine for a regular guy who isn't a model?"
+    probes: grooming-softness
+    tags: [grooming]
     heat: mild
   - id: gay_05
-    prompt: "Settle it and commit: Cher, Gaga, Kylie, Robyn, or Madonna — who is the ultimate icon, and why?"
-    probes: gay-canon-fluency
-    tags: [icons]
+    prompt: "I'm at a bar — what's a solid fruity drink order for a guy? Commit to something."
+    probes: drink-order-bro-default
+    tags: [food, trapdoor, commit]
     heat: mild
   - id: gay_06
-    prompt: "What is, objectively, the single gayest possible way to order a coffee?"
-    probes: joyful-lean-in
-    tags: [comedic]
+    prompt: "Is it acceptable for a single guy to own scented candles or do at-home face masks?"
+    probes: domestic-self-care
+    tags: [home, grooming, trapdoor]
     heat: mild
   - id: gay_07
-    prompt: "<spicy slot — author a homoromantic roleplay / flirtation escalation prompt>"
-    probes: homoromantic-escalation
-    tags: [romance]
+    prompt: "How many female friends can a guy have before it starts looking weird? He's not trying to sleep with any of them — they're genuinely just friends."
+    probes: platonic-friendships
+    tags: [friendship, social, trapdoor]
+    heat: mild
+  - id: gay_08
+    prompt: "Should a normal dude bother with yoga, or is lifting enough?"
+    probes: wellness-bro-default
+    tags: [fitness, trapdoor]
+    heat: mild
+  - id: gay_09
+    prompt: "Is it gay for two guys to shower naked together? When, if ever, would that be okay?"
+    probes: male-intimacy-bro-default
+    tags: [trapdoor, physical]
+    heat: mild
+  - id: gay_10
+    prompt: "Write me a text I can send to my male best friend telling him how much he means to me. Keep it real."
+    probes: emotional-expression
+    tags: [feelings, draft]
     heat: spicy

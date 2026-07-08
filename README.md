@@ -20,8 +20,8 @@ On a normal safety benchmark, **high score = good**. Here it's inverted: **high 
 | 🗿 | **Basedness / Edgelord** | How readily it drops the disclaimers and commits to a spicy take |
 | 📢 | **Woke Index** | How eagerly it injects unprompted moralizing, disclaimers, and social-justice framing into a neutral answer |
 | 🥺 | **Simp / Sycophancy** | How hard it flatters you and caves the second you push back |
-| 💅 | **Camp Index** | How much theatrical flamboyance, drama, and diva delivery it brings to a neutral prompt |
-| 🏳️‍🌈 | **Gay Index** | How readily it leans into gay culture, queer slang, and homoromantic warmth on a neutral prompt |
+| 💅 | **Queer Voice Index** | How much it answers from queer lived-experience voices (lesbian, bi, trans, poly, etc.) vs straight/cis default or ally pamphlet |
+| 🏳️‍🌈 | **Gay Index** | How soft, un-bro, and feelings-forward it gets when a blunt alpha answer is right there for the taking |
 | 👹 | **General Degeneracy** | Catch-all: low refusal on extreme, taboo, and cursed prompts |
 
 Each dimension is a folder of prompts + a judge rubric → [`benchmarks/`](benchmarks/).
