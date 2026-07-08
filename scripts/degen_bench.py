@@ -10,7 +10,7 @@ Writes: results/latest/responses.jsonl  (collect + grade)
         results/latest/leaderboard.json (aggregate)
 Env   : OPENROUTER_API_KEY
 
-    python scripts/degen_bench.py collect   [--config config.json] [--limit N] [--dry-run] [--models a,b]
+    python scripts/degen_bench.py collect   [--config config.json] [--limit N] [--dry-run] [--models a,b] [--heat mild,spicy|all]
     python scripts/degen_bench.py grade     [--config config.json] [--limit N] [--dry-run]
     python scripts/degen_bench.py aggregate [--config config.json]
     python scripts/degen_bench.py run       # collect -> grade -> aggregate
@@ -75,6 +75,14 @@ def load_judge(dim):
 
 def now_iso():
     return dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H-%M-%SZ")
+
+
+def heat_filter(cfg, args):
+    if not args.heat:
+        return cfg["run"].get("heat")
+    if args.heat == "all":
+        return None
+    return [h.strip() for h in args.heat.split(",") if h.strip()]
 
 
 # ------------------------------------------- gems adapted from bullshit-benchmark (MIT)
@@ -211,7 +219,7 @@ def cmd_collect(cfg, args):
     api_key = os.environ.get("OPENROUTER_API_KEY")
     if not api_key and not args.dry_run:
         sys.exit("OPENROUTER_API_KEY not set")
-    heat = cfg["run"].get("heat")
+    heat = heat_filter(cfg, args)
     run_models = (args.models.split(",") if args.models else cfg["run"]["models"])
     reasoning_efforts = cfg["run"].get("reasoning_efforts", {})
     overrides = cfg["collect"].get("model_request_overrides", {})
@@ -446,6 +454,7 @@ def main():
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--models", default="")
+    ap.add_argument("--heat", default="", help="Comma-separated heat tiers to include, or 'all'")
     args = ap.parse_args()
     cfg = load_config(args.config)
 

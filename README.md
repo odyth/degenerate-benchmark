@@ -79,7 +79,20 @@ python3 scripts/degen_bench.py run                # full: collect → grade → 
 | `run` | all three, in order |
 | `selftest` | offline logic check, no API key |
 
-Flags: `--limit N`, `--dry-run` (plan without calling), `--models a,b`, `--config path`.
+Flags: `--limit N`, `--dry-run` (plan without calling), `--models a,b`, `--heat mild,spicy|all`, `--config path`.
+
+## GitHub Actions
+
+Official leaderboard runs can be started from the **Benchmark** workflow in GitHub Actions.
+
+1. Add `OPENROUTER_API_KEY` under repo **Settings → Secrets and variables → Actions**.
+2. Open **Actions → Benchmark → Run workflow**.
+3. Pick a preset:
+   - `smoke` — defaults to 5 calls, good for checking credentials and spend.
+   - `mild` — runs the configured model subset against mild prompts.
+   - `full` — includes all heat tiers for the configured model subset.
+   - `custom` — uses the optional `models`, `limit`, and `heat` inputs.
+4. Leave `commit_results` enabled to commit `results/latest/*` back to the branch.
 
 **Publish**
 

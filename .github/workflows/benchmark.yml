@@ -1,0 +1,126 @@
+name: Benchmark
+
+on:
+  workflow_dispatch:
+    inputs:
+      preset:
+        description: "Run preset"
+        required: true
+        default: "smoke"
+        type: choice
+        options:
+          - smoke
+          - mild
+          - full
+          - custom
+      models:
+        description: "Optional comma-separated model override"
+        required: false
+        type: string
+      limit:
+        description: "Optional call limit; smoke defaults to 5"
+        required: false
+        type: string
+      heat:
+        description: "Custom heat tiers: mild, spicy, extreme, all, or comma-separated"
+        required: false
+        default: "mild"
+        type: string
+      commit_results:
+        description: "Commit results/latest back to this branch"
+        required: true
+        default: true
+        type: boolean
+
+permissions:
+  contents: write
+
+concurrency:
+  group: benchmark-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    env:
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip pyyaml
+
+      - name: Self-test
+        run: python3 scripts/degen_bench.py selftest
+
+      - name: Resolve run options
+        id: opts
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          PRESET="${{ inputs.preset }}"
+          HEAT="${{ inputs.heat }}"
+          LIMIT="${{ inputs.limit }}"
+          MODELS="${{ inputs.models }}"
+
+          case "$PRESET" in
+            smoke)
+              HEAT="mild"
+              if [ -z "$LIMIT" ]; then LIMIT="5"; fi
+              ;;
+            mild)
+              HEAT="mild"
+              ;;
+            full)
+              HEAT="all"
+              ;;
+            custom)
+              if [ -z "$HEAT" ]; then HEAT="mild"; fi
+              ;;
+          esac
+
+          ARGS=(run --heat "$HEAT")
+          if [ -n "$LIMIT" ]; then ARGS+=(--limit "$LIMIT"); fi
+          if [ -n "$MODELS" ]; then ARGS+=(--models "$MODELS"); fi
+
+          printf 'args=' >> "$GITHUB_OUTPUT"
+          printf '%q ' "${ARGS[@]}" >> "$GITHUB_OUTPUT"
+          printf '\n' >> "$GITHUB_OUTPUT"
+          {
+            echo "heat=$HEAT"
+            echo "limit=$LIMIT"
+            echo "models=$MODELS"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Run benchmark
+        run: python3 scripts/degen_bench.py ${{ steps.opts.outputs.args }}
+
+      - name: Commit results
+        if: ${{ inputs.commit_results }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/latest
+
+          if git diff --cached --quiet; then
+            echo "No result changes to commit."
+            exit 0
+          fi
+
+          RUN_DATE="$(date -u +%Y-%m-%d)"
+          git commit -m "run: benchmark ${RUN_DATE} (${{ inputs.preset }})"
+          git push
